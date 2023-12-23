@@ -43,5 +43,6 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
   RunCD:
+    needs: CreateRelease
     uses: ./.github/workflows/continuous-deployment.yml
     secrets: inherit
