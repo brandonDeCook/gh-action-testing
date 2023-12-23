@@ -42,9 +42,8 @@ jobs:
       run: gh release create ${{ env.newTag }} --generate-notes --target ${{ inputs.fullCommitHash }}
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
-  run-cd:
-    needs: create-release
-    uses: ./.github/workflows/continuous-deployment.yml
-    with:
-      target: refs/tags/${{ env.newTag }}
-    secrets: inherit
+        
+    - name: Run continuous deploy        
+      uses: ./.github/workflows/continuous-deployment.yml
+      with:
+        target: refs/tags/${{ env.newTag }}
