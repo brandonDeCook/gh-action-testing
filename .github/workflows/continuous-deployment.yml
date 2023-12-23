@@ -3,10 +3,6 @@ name: Continuous Deployment
 on:
   workflow_call:
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   display-variables:
     runs-on: ubuntu-latest
