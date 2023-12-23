@@ -1,0 +1,48 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      fullCommitHash:
+        description: 'The full hash of the commit you want to create a release from'
+        required: true
+        type: string
+        
+permissions:
+  contents: write
+  pull-requests: read
+  repository-projects: read
+    
+jobs:
+  CreateRelease:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Run script file
+      run: |
+        input=$(date +'%Y-%m-%d')
+        existingTag=$(git tag -l "v${input}*" | tail -n 1)
+
+        if [ "$existingTag" == "" ]; then
+          echo "newTag=v${input}" >> $GITHUB_ENV
+        else
+          currentPostfix=${existingTag#*.}
+          if [ "$currentPostfix" == $existingTag ]; then
+            echo "newTag=v${input}.1" >> $GITHUB_ENV
+          else
+            newPostfix="$(($currentPostfix+1))"
+            echo "newTag=v${input}.${newPostfix}" >> $GITHUB_ENV
+          fi
+        fi
+
+    - name: Create Github Release
+      run: gh release create ${{ env.newTag }} --generate-notes --target ${{ inputs.fullCommitHash }}
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    RunCD:
+      uses: ./.github/workflows/continuous-deployment.yml
+      secrets: inherit
