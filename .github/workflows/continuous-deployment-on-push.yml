@@ -1,0 +1,14 @@
+on:
+    push:
+      tags:
+        - 'v*'
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+
+        - name: Variables
+          run: |
+            echo "GITHUB_REF: $GITHUB_REF"
+  
