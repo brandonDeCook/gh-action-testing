@@ -54,5 +54,5 @@ jobs:
     needs: create-release
     uses: ./.github/workflows/continuous-deployment.yml
     with:
-      target: ${{ needs.create-release.outputs.releaseTag }}
+        target: ${{ needs.create-release.outputs.releaseTag }}
     secrets: inherit

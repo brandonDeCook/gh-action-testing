@@ -9,14 +9,14 @@ on:
 
 jobs:
   checkout-branch:
-    steps:
-      - uses: actions/checkout@v4     
-        with: 
-          ref: ${{ inputs.target || 'refs/heads/main' }}
-  display-variables:
     runs-on: ubuntu-latest
     steps:
-      - name: Variables
-        run: |
-          echo "GITHUB_REF: $GITHUB_REF"
+      
+    - uses: actions/checkout@v4     
+      with: 
+        ref: ${{ inputs.target || 'refs/heads/main' }}
+        
+    - name: Variables
+      run: |
+        echo "GITHUB_REF: $GITHUB_REF"
 
