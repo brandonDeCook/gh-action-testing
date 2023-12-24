@@ -17,7 +17,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     outputs:
-      releaseTag:  ${{ steps.step1.outputs.test }}
+      releaseTag:  ${{ steps.set-outputs.outputs.newTag }}
     steps:
     - uses: actions/checkout@v4
       with:
@@ -48,7 +48,7 @@ jobs:
     - name: Set outputs
       id: set-outputs
       run: |
-        echo "test=${{ env.newTag }}" >> $GITHUB_OUTPUT
+        echo "newTag=${{ env.newTag }}" >> $GITHUB_OUTPUT
 
   run-cd:
     needs: create-release
