@@ -42,6 +42,8 @@ jobs:
       run: gh release create ${{ env.newTag }} --generate-notes --target ${{ inputs.fullCommitHash }}
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+    
+    - uses: actions/checkout@v4
         
     - name: Run continuous deploy        
       uses: ./.github/workflows/continuous-deployment.yml
