@@ -7,10 +7,6 @@ on:
         required: false
         type: string
   workflow_dispatch:
-    inputs:
-      target:
-        required: false
-        type: string
   push:
     branches: [ main ]
 
