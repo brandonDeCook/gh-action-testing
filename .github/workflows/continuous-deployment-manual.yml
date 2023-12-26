@@ -1,0 +1,10 @@
+name: Continuous Deployment Manual
+
+on:
+    workflow_dispatch:
+
+jobs:
+    run-cd:
+        uses: ./.github/workflows/continuous-deployment.yml
+        secrets: inherit
+  
