@@ -11,6 +11,8 @@ on:
       target:
         required: false
         type: string
+  push:
+    branches: [ main ]
 
 jobs:
   checkout-branch:
