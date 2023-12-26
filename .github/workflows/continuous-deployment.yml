@@ -2,10 +2,15 @@ name: Continuous Deployment
 
 on:
   workflow_call:
-      inputs:
-        target:
-          required: false
-          type: string
+    inputs:
+      target:
+        required: false
+        type: string
+  workflow_dispatch:
+    inputs:
+      target:
+        required: false
+        type: string
 
 jobs:
   checkout-branch:
