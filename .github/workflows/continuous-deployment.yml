@@ -20,6 +20,9 @@ jobs:
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
     
+    - run: |
+        echo "hello, you're in a different branch"
+    
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
