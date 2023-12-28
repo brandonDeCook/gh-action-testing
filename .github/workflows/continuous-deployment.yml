@@ -26,8 +26,6 @@ jobs:
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
         echo "input.target: ${{ inputs.target }}"
-        echo "newRef=${{inputs.target}}" >> $GITHUB_REF
-        echo "GITHUB_REF: $GITHUB_REF"
     
     - run: |
         echo "hello, you're in a different branch"
