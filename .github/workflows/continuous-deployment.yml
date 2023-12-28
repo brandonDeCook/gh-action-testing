@@ -14,9 +14,6 @@ jobs:
   checkout-branch:
     runs-on: ubuntu-latest
     steps:
-    
-    - run: |
-        git status
 
     - uses: actions/checkout@v4     
       with: 
