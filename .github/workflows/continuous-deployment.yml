@@ -26,7 +26,7 @@ jobs:
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
         echo "input.target: ${{ inputs.target }}"
-        echo "GITHUB_REF=${{inputs.target}}" >> $GITHUB_REF
+        echo "newRef=${{inputs.target}}" >> $GITHUB_REF
         echo "GITHUB_REF: $GITHUB_REF"
     
     - run: |
