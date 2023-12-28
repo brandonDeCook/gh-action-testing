@@ -14,7 +14,10 @@ jobs:
   checkout-branch:
     runs-on: ubuntu-latest
     steps:
-      
+    
+    - run: |
+        git status
+
     - uses: actions/checkout@v4     
       with: 
         ref: ${{ inputs.target || github.ref }}
@@ -26,7 +29,8 @@ jobs:
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
         echo "input.target: ${{ inputs.target }}"
-        echo "GITHUB_REF=${{inputs.target}}" >> $GITHUB_ENV
+        echo "GITHUB_REF=${{inputs.target}}" >> $GITHUB_REF
+        echo "GITHUB_REF: $GITHUB_REF"
     
     - run: |
         echo "hello, you're in a different branch"
