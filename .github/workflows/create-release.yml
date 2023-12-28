@@ -43,16 +43,16 @@ jobs:
     - name: Create Github Release
       run: gh release create ${{ env.newTag }} --generate-notes --target ${{ inputs.fullCommitHash }}
       env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.CREATE_RELEASE_PAT }} 
 
     - name: Set outputs
       id: set-outputs
       run: |
         echo "newTag=${{ env.newTag }}" >> $GITHUB_OUTPUT
 
-  run-cd:
-    needs: create-release
-    uses: ./.github/workflows/continuous-deployment.yml
-    with:
-        target: ${{ needs.create-release.outputs.releaseTag }}
-    secrets: inherit
+#  run-cd:
+#    needs: create-release
+#    uses: ./.github/workflows/continuous-deployment.yml
+#    with:
+#        target: ${{ needs.create-release.outputs.releaseTag }}        
+#    secrets: inherit
