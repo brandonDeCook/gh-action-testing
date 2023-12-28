@@ -18,10 +18,15 @@ jobs:
     - uses: actions/checkout@v4     
       with: 
         ref: ${{ inputs.target || github.ref }}
+
+    - run: |
+        git status
         
     - name: Variables
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
+        echo "input.target: ${{ inputs.target }}"
+        echo "GITHUB_REF=${{inputs.target}}" >> $GITHUB_ENV
     
     - run: |
         echo "hello, you're in a different branch"
